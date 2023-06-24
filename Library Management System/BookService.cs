@@ -20,11 +20,11 @@ namespace Library_Management_System
             {              
                 if (book.isAvailable == true)
                 {
-                    Console.WriteLine($"ID: {book.idBook} Tytul: {book.title} Autor: {book.author} Gatunek: {book.genre} Wyporzyczona: Nie");
+                    Console.WriteLine($"ID: {book.idBook} Tytul: {book.title} Autor: {book.author} Gatunek: {book.genre} Wypożyczona: Nie");
                 }
                 else if (book.isAvailable == false)
                 {
-                    Console.WriteLine($"ID: {book.idBook} Tytul: {book.title} Autor: {book.author} Gatunek: {book.genre} Wyporzyczona: Tak");
+                    Console.WriteLine($"ID: {book.idBook} Tytul: {book.title} Autor: {book.author} Gatunek: {book.genre} Wypożyczona: Tak");
                 }             
             }
         }
@@ -32,7 +32,7 @@ namespace Library_Management_System
         {
             if (books.Count == 0)
             {
-                Console.WriteLine("Aktualnie niema ksiazek do wypożyczenia");
+                Console.WriteLine("Aktualnie nie ma książek do wypożyczenia");
             }
             else
             {
@@ -51,7 +51,7 @@ namespace Library_Management_System
             {
                 if(book.isAvailable == false)
                 {
-                    Console.WriteLine($"ID: {book.idBook} Tytul: {book.title} Autor: {book.author} Gatunek: {book.genre} Dostępność: {book.isAvailable}");
+                    Console.WriteLine($"ID: {book.idBook} Tytul: {book.title} Autor: {book.author} Gatunek: {book.genre} Dostępność: Nie");
                 }
             }
         }
@@ -59,12 +59,12 @@ namespace Library_Management_System
         {
             Book book = new Book();
 
-            Console.WriteLine("Podaj ID ksiazki:");
+            Console.WriteLine("Podaj ID książki:");
             var id = Console.ReadLine();
             int idBook;
             Int32.TryParse(id, out idBook);
 
-            Console.WriteLine("Podaj tytuł ksiazki:");
+            Console.WriteLine("Podaj tytuł książki:");
             var title = Console.ReadLine();
 
             Console.WriteLine("Podaj autora:");
@@ -80,7 +80,7 @@ namespace Library_Management_System
             book.genre = genre;
 
             books.Add(book);
-            Console.WriteLine("Dodano ksiazke do bazy");
+            Console.WriteLine("Dodano książke do bazy");
         }
         public void removeBook(int idBook)
         {
@@ -92,7 +92,7 @@ namespace Library_Management_System
                     break;
                 }
             }
-            Console.WriteLine("Usunieto ksiazke z bazy");
+            Console.WriteLine("Usunieto książke z bazy");
         }
            
     }

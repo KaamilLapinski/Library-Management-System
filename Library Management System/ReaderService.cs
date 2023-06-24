@@ -52,7 +52,7 @@ namespace Library_Management_System
                     }
                     else
                     {
-                        Console.WriteLine("Nie można usunąć czytelnika, który ma wypożyczone ksiażki.");
+                        Console.WriteLine("Nie można usunąć czytelnika, który ma wypożyczone książki.");
                         break;
                     }
                     
@@ -66,7 +66,7 @@ namespace Library_Management_System
                 Console.WriteLine($"ID: {reader.idReader} Imie: {reader.name} Numer tel.: {reader.phoneNumber}");
                 if(reader.borrowBooks.Count > 0)
                 {
-                    Console.WriteLine("Wypożyczone ksiazki:");
+                    Console.WriteLine("Wypożyczone książki:");
                     foreach (var item in reader.borrowBooks)
                     {        
                         Console.WriteLine($"ID: {item.idBook} Tytul: {item.title} Autor: {item.author} Gatunek: {item.genre}");
@@ -74,7 +74,7 @@ namespace Library_Management_System
                 }
                 else
                 {
-                    Console.WriteLine("Czytelnik nie ma wypożyczonych ksiązek.");
+                    Console.WriteLine("Czytelnik nie ma wypożyczonych książek.");
                 }    
                 Console.WriteLine("------------------");
             }
@@ -87,11 +87,11 @@ namespace Library_Management_System
                 {
                     Console.WriteLine($"ID: {reader.idReader} Imie: {reader.name} Numer tel.: {reader.phoneNumber}");
                     Console.WriteLine($"Kara: {reader.penalty} złotych");
-                    Console.WriteLine("Wypożyczone ksiazki:");
+                    Console.WriteLine("Wypożyczone książki:");
                     foreach (var item in reader.borrowBooks)
                     {
-                        Console.WriteLine($"ID: {item.idBook} Tytul: {item.title} Autor: {item.author} Gatunek: {item.genre}");
-                        Console.WriteLine($"--Ksiazke musisz zwrucić do {item.returnDate}");
+                        Console.WriteLine($"ID: {item.idBook} Tytuł: {item.title} Autor: {item.author} Gatunek: {item.genre}");
+                        Console.WriteLine($"--Książke musisz zwrócić do {item.returnDate}");
                     }
                 }
             }
@@ -113,11 +113,11 @@ namespace Library_Management_System
                                 book.isAvailable = false;
                                 DateTime today = DateTime.Now;
                                 book.returnDate = today.AddSeconds(10);
-                                Console.WriteLine("Ksiazka została wypożyczona");
+                                Console.WriteLine("Książka została wypożyczona");
                             }
                             else
                             {
-                                Console.WriteLine("Nie można wypożyczyć tej ksiazki.");
+                                Console.WriteLine("Nie można wypożyczyć tej książki.");
                             }         
                             break;
                         }                       
@@ -147,7 +147,7 @@ namespace Library_Management_System
                             }
                             reader.borrowBooks.Remove(book);
                             book.isAvailable = true;                          
-                            Console.WriteLine("Ksiazka zostałą zwróćona");
+                            Console.WriteLine("Książka zostałą zwróćona");
                             break;
                         }
                         

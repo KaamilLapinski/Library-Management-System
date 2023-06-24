@@ -28,14 +28,7 @@
             BookService bookService = new BookService();
             
             while (true)
-            {
-                DateTime today = DateTime.Now;
-                today = today.AddDays(3);
-
-                var differenceDays = DateTime.Now - today ;
-
-                Console.WriteLine( differenceDays.Days);
-
+            {               
                 Console.WriteLine("[1.] Administrator ");
                 Console.WriteLine("[2.] Czytelnik");
                 var operation = Console.ReadKey();
@@ -43,15 +36,15 @@
                 switch (operation.KeyChar)
                 {
                     case '1':
-                        Console.WriteLine("[1.] Dodaj cztelnika");
-                        Console.WriteLine("[2.] Usuń cztelnika");
-                        Console.WriteLine("[3.] Dodaj ksiazke do bazy");
+                        Console.WriteLine("[1.] Dodaj czytelnika");
+                        Console.WriteLine("[2.] Usuń czytelnika");
+                        Console.WriteLine("[3.] Dodaj ksiażke do bazy");
                         Console.WriteLine("[4.] Usuń książke z bazy");
-                        Console.WriteLine("[5.] Wyświetl wyporzyczone ksiazki");
-                        Console.WriteLine("[6.] Wyświetl wszystich czytelników");
-                        Console.WriteLine("[7.] Wyporzycz ksiażke");
-                        Console.WriteLine("[8.] Zwróć ksiazki");
-                        Console.WriteLine("[9.] Wyświetl wszystkie ksiazki");
+                        Console.WriteLine("[5.] Wyświetl wypożyczone książki");
+                        Console.WriteLine("[6.] Wyświetl wszystkich czytelników");
+                        Console.WriteLine("[7.] Wypożycz ksiażke");
+                        Console.WriteLine("[8.] Zwróć ksiązke");
+                        Console.WriteLine("[9.] Wyświetl wszystkie ksiązki");
                         var operation2 = Console.ReadKey();
                         Console.Clear();
                         switch (operation2.KeyChar)
@@ -92,7 +85,7 @@
                                 int idReader2;
                                 Int32.TryParse(idR2, out idReader2);
                                 bookService.showBook();
-                                Console.WriteLine("Podaj ID ksiazki");
+                                Console.WriteLine("Podaj ID książki");
                                 var idB2 = Console.ReadLine();
                                 int idBook2;
                                 Int32.TryParse(idB2, out idBook2);
@@ -105,7 +98,7 @@
                                 var idR3 = Console.ReadLine();
                                 int idReader3;
                                 Int32.TryParse(idR3, out idReader3);
-                                Console.WriteLine("Podaj ID ksiazki");
+                                Console.WriteLine("Podaj ID książki");
                                 var idB3 = Console.ReadLine();
                                 int idBook3;
                                 Int32.TryParse(idB3, out idBook3);
@@ -118,8 +111,8 @@
                         }
                         break;
                     case '2':
-                        Console.WriteLine("[1.] Sprawdz wypozyczone ksiazki czytelnika");
-                        Console.WriteLine("[2.] Sprawdz dostępne ksiazki");
+                        Console.WriteLine("[1.] Sprawdz wypożyczone ksążzki czytelnika");
+                        Console.WriteLine("[2.] Sprawdz dostępne książki");
                         var operation3 = Console.ReadKey();
                         Console.Clear();
                         switch (operation3.KeyChar)
@@ -132,7 +125,7 @@
                                 readerService.showReader(idReader4);
                                 break;
                             case '2':
-                                Console.WriteLine("Dostępne ksiazki:");
+                                Console.WriteLine("Dostępne książki:");
                                 bookService.showBook(true);
                                 break;
                         }
