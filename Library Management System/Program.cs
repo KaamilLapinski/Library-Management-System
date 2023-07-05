@@ -50,21 +50,21 @@
                         switch (operation2.KeyChar)
                         {
                             case '1':
-                                readerService.addReader();
+                                readerService.AddReader();
                                 break;
                             case '2':
-                                readerService.showReader();
+                                readerService.ShowReaders();
                                 Console.WriteLine("Podaj ID czytelnika do usunięcia");
                                 var idR = Console.ReadLine();
                                 int idReader;
                                 Int32.TryParse(idR, out idReader);
-                                readerService.removeReader(idReader);
+                                readerService.RemoveReader(idReader);
                                 break;
                             case '3':
-                                bookService.addBook();
+                                bookService.AddBook();
                                 break;
                             case '4':
-                                bookService.showBook();
+                                bookService.ShowBooks();
                                 Console.WriteLine("Podaj ID ksiazki do usunięcia");
                                 var idB = Console.ReadLine();
                                 int idBook;
@@ -72,73 +72,79 @@
                                 bookService.removeBook(idBook);
                                 break;
                             case '5':
-                                bookService.showBorrowBooks();
+                                bookService.ShowBooksByAvailability(false);
                                 break;
-        
                             case '6':
-                                readerService.showReader();
+                                readerService.ShowReaders();
                                 break;
                             case '7':
-                                readerService.showReader();
-                                Console.WriteLine("Podaj ID czytelnika:");
-                                var idR2 = Console.ReadLine();
-                                int idReader2;
-                                Int32.TryParse(idR2, out idReader2);
-                                bookService.showBook();
-                                Console.WriteLine("Podaj ID książki");
-                                var idB2 = Console.ReadLine();
-                                int idBook2;
-                                Int32.TryParse(idB2, out idBook2);
+                                readerService.ShowReaders();
+                                Console.WriteLine("Podaj ID czytelnika:");                              
+                                int idReader2;                               
+                                while (!Int32.TryParse(Console.ReadLine(), out idReader2))
+                                {
+                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
+                                };
 
-                                readerService.borrowBook(idReader2, idBook2);
+                                bookService.ShowBooks();
+                                Console.WriteLine("Podaj ID książki");
+                                int idBook2;
+                                while (!Int32.TryParse(Console.ReadLine(), out idBook2))
+                                {
+                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
+                                };
+
+                                readerService.BorrowBook(idReader2, idBook2);
                                 break;
                             case '8':
-                                readerService.showReader();
+                                readerService.ShowReaders();
                                 Console.WriteLine("Podaj ID czytelnika:");
-                                var idR3 = Console.ReadLine();
                                 int idReader3;
-                                Int32.TryParse(idR3, out idReader3);
+                                while (!Int32.TryParse(Console.ReadLine(), out idReader3))
+                                {
+                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
+                                };
+                                
                                 Console.WriteLine("Podaj ID książki");
-                                var idB3 = Console.ReadLine();
-                                int idBook3;
-                                Int32.TryParse(idB3, out idBook3);
-
-                                readerService.returnBook(idReader3, idBook3);
+                                int idBook3;    
+                                while (!Int32.TryParse(Console.ReadLine(), out idBook3))
+                                {
+                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
+                                };
+                                readerService.ReturnBook(idReader3, idBook3);
                                 break;
                             case '9':
-                                bookService.showBook();
+                                bookService.ShowBooks();
                                 break;
                         }
                         break;
                     case '2':
-                        Console.WriteLine("[1.] Sprawdz wypożyczone ksążzki czytelnika");
+                        Console.WriteLine("[1.] Sprawdz wypożyczone książki czytelnika");
                         Console.WriteLine("[2.] Sprawdz dostępne książki");
                         var operation3 = Console.ReadKey();
                         Console.Clear();
                         switch (operation3.KeyChar)
                         {
                             case '1':
-                                Console.WriteLine("Podaj swoje ID:");
-                                var idR4 = Console.ReadLine();
-                                int idReader4;
-                                Int32.TryParse(idR4, out idReader4);
-                                readerService.showReader(idReader4);
+                                Console.WriteLine("Podaj swoje ID:");                               
+                                int idReader4; 
+                                while (!Int32.TryParse(Console.ReadLine(), out idReader4))
+                                {
+                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
+                                };
+                                readerService.ShowReaders(idReader4);
                                 break;
                             case '2':
                                 Console.WriteLine("Dostępne książki:");
-                                bookService.showBook(true);
+                                bookService.ShowBooksByAvailability(true);
                                 break;
                         }
-
-
-                        break;
-               
+                        break;              
                     default:
                         Console.WriteLine("Wybrana akcja nie istnieje!");
                         break;
                 }
-            }
-            
+            }         
         }
     }
 }

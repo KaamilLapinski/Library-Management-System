@@ -9,7 +9,7 @@ namespace Library_Management_System
     public enum Genre
     {
         Kryminal = 1,
-        Komedia,
-        Naukowa
+        Komedia = 2 ,
+        Naukowa = 3
     }
 }

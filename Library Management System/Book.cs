@@ -10,21 +10,18 @@ namespace Library_Management_System
     {
         //generowanie ID, tytul, autor, cena, kategoria (inforamcja czy jest wypozyczona i do kiedy)
 
-        public int idBook { get; set; }
-        public double price { get; set; }
-        public string title { get; set; }
-        public string author { get; set; }
-        public string genre { get; set; }
-        public bool isAvailable { get; set; }
+        public int IdBook { get; set; }
+        public double Price { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Genre { get; set; }
+        public bool IsAvailable { get; set; }
 
-        public DateTime returnDate { get; set; }
+        public DateTime ReturnDate { get; set; }
 
         public Book()
         {           
-            isAvailable = true;   
-            
-        }
-         
-       
+            IsAvailable = true;             
+        }    
     }
 }
