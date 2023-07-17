@@ -1,4 +1,6 @@
-﻿namespace Library_Management_System
+﻿using Library_Management_System.App;
+
+namespace Library_Management_System
 {
     internal class Program
     {
@@ -69,7 +71,7 @@
                                 var idB = Console.ReadLine();
                                 int idBook;
                                 Int32.TryParse(idB, out idBook);
-                                bookService.removeBook(idBook);
+                                bookService.RemoveBook(idBook);
                                 break;
                             case '5':
                                 bookService.ShowBooksByAvailability(false);

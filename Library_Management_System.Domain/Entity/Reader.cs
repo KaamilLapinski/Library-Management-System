@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Library_Management_System.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library_Management_System
+namespace Library_Management_System.Domain.Entity
 {
-    public class Reader
+    public class Reader : BaseEntity
     {
         // generowanie ID, imie, nazwisko, telefon, email, (lista ksiazek wypozyczonych, kara))
-        public int IdReader { get; set; }
+       // public int IdReader { get; set; }
         public double Penalty { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }

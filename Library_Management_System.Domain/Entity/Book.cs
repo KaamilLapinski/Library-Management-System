@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Library_Management_System.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library_Management_System
+namespace Library_Management_System.Domain.Entity
 {
-    public class Book
+    public class Book : BaseEntity
     {
         //generowanie ID, tytul, autor, cena, kategoria (inforamcja czy jest wypozyczona i do kiedy)
 
-        public int IdBook { get; set; }
+        //public int IdBook { get; set; }
         public double Price { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Library_Management_System.App.Common;
+using Library_Management_System.Domain;
+using Library_Management_System.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.PortableExecutable;
@@ -6,69 +9,52 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Library_Management_System
+namespace Library_Management_System.App
 {
-    public class ReaderService
+    public class ReaderService : BaseService<Reader>
     {
-        public List<Reader> Readers { get; set; }
-        
-        public ReaderService()
-        {
-            Readers = new List<Reader>();                
-        }
         public void AddReader()
         {
             Reader reader = new Reader();
-            Console.WriteLine("Podaj ID czytelnika:");           
-            int idReader;
-            while(!Int32.TryParse(Console.ReadLine(), out idReader))
-            {
-                Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
-            };
+            
             Console.WriteLine("Podaj imie:");
             var name = Console.ReadLine();
 
             Console.WriteLine("Podaj numer telefonu:");
             var phoneNUmber = Console.ReadLine();
 
-            reader.IdReader = idReader;
+            var lastId = GetLastId();
+            reader.Id = lastId + 1;
             reader.Name = name;
             reader.PhoneNumber = phoneNUmber;
 
-            Readers.Add(reader);
+            AddElement(reader);
             Console.WriteLine("Dodano nowego czytelnika.");
         }
         public void RemoveReader(int idReader)
         {
-            foreach (Reader reader in Readers)
+            var reader = GetElementById(idReader);
+            if(reader.BorrowBooks.Count == 0)
             {
-                if(reader.IdReader == idReader)
-                {
-                    if(reader.BorrowBooks.Count == 0)
-                    {
-                        Readers.Remove(reader);
-                        Console.WriteLine("Usunieto czytelnika.");
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Nie można usunąć czytelnika, który ma wypożyczone książki.");
-                        break;
-                    }                   
-                }
-            }          
+                RemoveElement(reader);
+                Console.WriteLine("Usunieto czytelnika.");
+            }
+            else
+            {
+                Console.WriteLine("Nie można usunąć czytelnika, który ma wypożyczone książki.");               
+            }                       
         }
         public void ShowReaders()
         {           
-            foreach (Reader reader in Readers)
+            foreach (Reader reader in Elements)
             {
-                Console.WriteLine($"ID: {reader.IdReader} Imie: {reader.Name} Numer tel.: {reader.PhoneNumber}");
+                Console.WriteLine($"ID: {reader.Id} Imie: {reader.Name} Numer tel.: {reader.PhoneNumber}");
                 if(reader.BorrowBooks.Count > 0)
                 {
                     Console.WriteLine("Wypożyczone książki:");
                     foreach (var item in reader.BorrowBooks)
                     {        
-                        Console.WriteLine($"ID: {item.IdBook} Tytul: {item.Title} Autor: {item.Author} Gatunek: {item.Genre}");
+                        Console.WriteLine($"ID: {item.Id} Tytul: {item.Title} Autor: {item.Author} Gatunek: {item.Genre}");
                     }
                 }
                 else
@@ -80,16 +66,16 @@ namespace Library_Management_System
         }
         public void ShowReaders(int id)
         {
-            foreach(Reader reader in Readers)
+            foreach(Reader reader in Elements)
             {
-                if (reader.IdReader == id)
+                if (reader.Id == id)
                 {
-                    Console.WriteLine($"ID: {reader.IdReader} Imie: {reader.Name} Numer tel.: {reader.PhoneNumber}");
+                    Console.WriteLine($"ID: {reader.Id} Imie: {reader.Name} Numer tel.: {reader.PhoneNumber}");
                     Console.WriteLine($"Kara: {reader.Penalty} złotych");
                     Console.WriteLine("Wypożyczone książki:");
                     foreach (var item in reader.BorrowBooks)
                     {
-                        Console.WriteLine($"ID: {item.IdBook} Tytuł: {item.Title} Autor: {item.Author} Gatunek: {item.Genre}");
+                        Console.WriteLine($"ID: {item.Id} Tytuł: {item.Title} Autor: {item.Author} Gatunek: {item.Genre}");
                         Console.WriteLine($"--Książke musisz zwrócić do {item.ReturnDate}");
                     }
                 }
@@ -97,13 +83,13 @@ namespace Library_Management_System
         }
         public void BorrowBook(int idReader, int idBook)
         {
-            foreach (Reader reader in Readers)
+            foreach (Reader reader in Elements)
             {
-                if(reader.IdReader == idReader)
+                if(reader.Id == idReader)
                 {
-                    foreach (Book book in BookService.Books)
+                    foreach (Book book in BookService.Elements)
                     {
-                        if (book.IdBook == idBook)
+                        if (book.Id == idBook)
                         {
                             if(book.IsAvailable == true)
                             {
@@ -126,13 +112,13 @@ namespace Library_Management_System
         }
         public void ReturnBook(int idReader, int idBook)
         {
-            foreach(Reader reader in Readers)
+            foreach(Reader reader in Elements)
             {
-                if(reader.IdReader == idReader)
+                if(reader.Id == idReader)
                 {
-                    foreach(Book book in BookService.Books)
+                    foreach(Book book in BookService.Elements)
                     {
-                        if(book.IdBook == idBook && book.IsAvailable == false)
+                        if(book.Id == idBook && book.IsAvailable == false)
                         {                           
                             var today = DateTime.Now;
                             var differenceDays = today - book.ReturnDate;
