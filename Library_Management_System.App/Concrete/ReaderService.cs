@@ -96,7 +96,7 @@ namespace Library_Management_System.App
                                 reader.BorrowBooks.Add(book);
                                 book.IsAvailable = false;
                                 DateTime today = DateTime.Now;
-                                book.ReturnDate = today.AddSeconds(10);
+                                book.ReturnDate = today.AddDays(30);
                                 Console.WriteLine("Książka została wypożyczona");
                             }
                             else

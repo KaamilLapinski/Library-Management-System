@@ -1,6 +1,7 @@
 ﻿using Library_Management_System.App.Common;
 using Library_Management_System.Domain;
 using Library_Management_System.Domain.Entity;
+using Library_Management_System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,24 @@ namespace Library_Management_System.App
             var author = Console.ReadLine();
 
             Console.WriteLine("Podaj kategorie: ");
-            var genre = Console.ReadLine();
+            Console.WriteLine("1.Thiler");
+            Console.WriteLine("2.Dokument");
+            Console.WriteLine("3.Powieść");
+
+            var choice = Console.ReadKey();
+            var genre = "Nie zdefiniowana";           
+            switch (choice.KeyChar)
+            {
+                case '1':
+                    genre = "Thiler";
+                    break;
+                case '2':
+                    genre = "Dokument";
+                    break;
+                case '3':
+                    genre = "Powieść";
+                    break;
+            }          
             var lastId = GetLastId();
             book.Id = lastId + 1;
             book.Title = title;
@@ -60,11 +78,8 @@ namespace Library_Management_System.App
                     {
                         Console.WriteLine($"ID: {book.Id} Tytul: {book.Title} Autor: {book.Author} Gatunek: {book.Genre} Wypożyczona: Tak");
                     }
-                }
-                Console.WriteLine("-------");
-                GetAllElements();
-            }
-            
+                }              
+            }           
         }
         public void ShowBooksByAvailability(bool isAvailable)
         {
@@ -86,7 +101,6 @@ namespace Library_Management_System.App
                     }
                   }                     
                 }
-            }
-          
+            }        
     }
 }

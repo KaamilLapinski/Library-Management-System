@@ -28,7 +28,7 @@ namespace Library_Management_System
             Console.WriteLine("-------------Library Management System-------------");
             ReaderService readerService = new ReaderService();
             BookService bookService = new BookService();
-            
+            Genre genre;
             while (true)
             {               
                 Console.WriteLine("[1.] Administrator ");
