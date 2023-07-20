@@ -1,7 +1,7 @@
 ﻿using Library_Management_System.App.Common;
 using Library_Management_System.Domain;
 using Library_Management_System.Domain.Entity;
-using Library_Management_System;
+//using Library_Management_System.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace Library_Management_System.App
             Console.WriteLine("1.Thiler");
             Console.WriteLine("2.Dokument");
             Console.WriteLine("3.Powieść");
-
+            //Genre gen;
             var choice = Console.ReadKey();
             var genre = "Nie zdefiniowana";           
             switch (choice.KeyChar)

@@ -1,9 +1,12 @@
-﻿using Library_Management_System.App;
+﻿using Library_Management_System;
+using Library_Management_System.App;
+using Library_Management_System.Helpers;
 
 namespace Library_Management_System
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
             /* Założenia projektowe 
@@ -28,11 +31,12 @@ namespace Library_Management_System
             Console.WriteLine("-------------Library Management System-------------");
             ReaderService readerService = new ReaderService();
             BookService bookService = new BookService();
-            Genre genre;
+            
             while (true)
             {               
                 Console.WriteLine("[1.] Administrator ");
                 Console.WriteLine("[2.] Czytelnik");
+                Console.WriteLine("[0.] Wyjście");
                 var operation = Console.ReadKey();
                 Console.Clear();
                 switch (operation.KeyChar)
@@ -47,6 +51,7 @@ namespace Library_Management_System
                         Console.WriteLine("[7.] Wypożycz ksiażke");
                         Console.WriteLine("[8.] Zwróć ksiązke");
                         Console.WriteLine("[9.] Wyświetl wszystkie ksiązki");
+                        Console.WriteLine("[0.] Wyjście");
                         var operation2 = Console.ReadKey();
                         Console.Clear();
                         switch (operation2.KeyChar)
@@ -118,11 +123,20 @@ namespace Library_Management_System
                             case '9':
                                 bookService.ShowBooks();
                                 break;
+
+                            case '0':
+                                Environment.Exit(0);
+                                break;
+                            default:
+                                Console.WriteLine("\nWybrana akcja nie istnieje");                               
+                                Console.ReadKey();
+                                break;
                         }
                         break;
                     case '2':
                         Console.WriteLine("[1.] Sprawdz wypożyczone książki czytelnika");
                         Console.WriteLine("[2.] Sprawdz dostępne książki");
+                        
                         var operation3 = Console.ReadKey();
                         Console.Clear();
                         switch (operation3.KeyChar)
@@ -141,7 +155,10 @@ namespace Library_Management_System
                                 bookService.ShowBooksByAvailability(true);
                                 break;
                         }
-                        break;              
+                        break;
+                    case '0':
+                        Environment.Exit(0);
+                        break;
                     default:
                         Console.WriteLine("Wybrana akcja nie istnieje!");
                         break;
