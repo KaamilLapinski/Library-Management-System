@@ -33,8 +33,8 @@ namespace Library_Management_System
                         Console.WriteLine("[7.] Wyświetl wszystkich czytelników");
                         Console.WriteLine("[8.] Wypożycz ksiażke");
                         Console.WriteLine("[9.] Zwróć ksiązke");
-                        Console.WriteLine("[0.] Wyświetl wszystkie ksiązki");
-                        //Console.WriteLine("[0.] Wyjście");
+                        Console.WriteLine("[10.] Wyświetl wszystkie ksiązki");
+                        Console.WriteLine("[0.] Wyjście");
                         var operation2 = Console.ReadLine();
                         Console.Clear();
                         switch (operation2)
