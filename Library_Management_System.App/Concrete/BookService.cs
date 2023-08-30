@@ -15,10 +15,9 @@ namespace Library_Management_System.App
 
     public class BookService : BaseService<Book>
     {
-        public void AddBook()
+        public Book addBookView()
         {
             Book book = new Book();
-
             Console.WriteLine("Podaj tytuł książki:");
             var title = Console.ReadLine();
 
@@ -26,7 +25,7 @@ namespace Library_Management_System.App
             var author = Console.ReadLine();
 
             Console.WriteLine("Podaj kategorie: ");
-            if(GenreService.Elements.Count > 0)
+            if (GenreService.Elements.Count > 0)
             {
                 for (int i = 0; i < GenreService.Elements.Count; i++)
                 {
@@ -35,9 +34,9 @@ namespace Library_Management_System.App
             }
             else
             {
-                Console.WriteLine("Brak kategori!");                
+                Console.WriteLine("Brak kategori!");
             }
-            
+
             var idG = Console.ReadLine();
             int idGenre;
             Int32.TryParse(idG, out idGenre);
@@ -46,23 +45,30 @@ namespace Library_Management_System.App
             book.Id = lastId + 1;
             book.Title = title;
             book.Author = author;
-            book.Genre = GenreService.Elements[idGenre - 1 ];
+            book.Genre = GenreService.Elements[idGenre - 1];
 
-            AddElement(book);
-            Console.WriteLine("Dodano książke do bazy");
+            return book;
         }
-        public void RemoveBook(int idBook)
+        public int AddBook(Book book)
+        {
+            AddElement(book);
+            Console.WriteLine("Dodano książke do bazy");    
+            return book.Id;
+        }
+        public int RemoveBook(int idBook)
         {     
             var book = GetElementById(idBook);
             RemoveElement(book);
             
             Console.WriteLine("Usunieto książke z bazy");
+            return book.Id;
         }
-        public void ShowBooks()
+        public int ShowBooks()
         {
             if (Elements.Count == 0)
             {
                 Console.WriteLine("Brak ksiażek w bazie.");
+                return 0;
             }
             else
             {
@@ -78,10 +84,13 @@ namespace Library_Management_System.App
                         Console.WriteLine($"ID: {book.Id} Tytul: {book.Title} Autor: {book.Author} Gatunek: {book.Genre.Name} Wypożyczona: Tak");
                     }
                 }              
-            }           
+            }
+            return 1;
         }
-        public void ShowBooksByAvailability(bool isAvailable)
+        public List<Book> ShowBooksByAvailability(bool isAvailable)
         {
+            List<Book> books = new List<Book>();
+
             if (Elements.Count == 0)
             {
                 Console.WriteLine("Aktualnie nie ma książek do wypożyczenia");
@@ -92,7 +101,8 @@ namespace Library_Management_System.App
                 {                
                     if (book.IsAvailable == isAvailable)
                     {
-                        Console.WriteLine($"ID: {book.Id} Tytul: {book.Title} Autor: {book.Author} Gatunek: {book.Genre}");
+                        books.Add(book);
+                        Console.WriteLine($"ID: {book.Id} Tytul: {book.Title} Autor: {book.Author} Gatunek: {book.Genre}");                       
                     }
                     else
                     {
@@ -100,6 +110,8 @@ namespace Library_Management_System.App
                     }
                   }                     
                 }
-            }        
+            return books;
+        } 
+         
     }
 }

@@ -51,7 +51,8 @@ namespace Library_Management_System
                                 readerService.RemoveReader(idReader);
                                 break;
                             case "3":
-                                bookService.AddBook();
+                                var book = bookService.addBookView();
+                                bookService.AddBook(book);
                                 break;
                             case "4":
                                 bookService.ShowBooks();
