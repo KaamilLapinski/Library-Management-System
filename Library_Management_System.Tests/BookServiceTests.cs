@@ -13,15 +13,19 @@ namespace Library_Management_System.Tests
         {
             //Arrange
             var genre = new Genre();
-            genre.Id = 1;
-            genre.Name = "Komedia";
-
+            {
+                genre.Id = 1;
+                genre.Name = "Komedia";
+            }
+            
             var book = new Book();
-            book.Id = 1;
-            book.Title = "Tytul";
-            book.Author = "Kamil";
-            book.Genre = genre;
-
+            {
+                book.Id = 1;
+                book.Name = "Tytul";
+                book.Author = "Kamil";
+                book.Genre = genre;
+            }
+            
             var bookService = new BookService();
             //Act
             bookService.AddBook(book);
@@ -35,15 +39,19 @@ namespace Library_Management_System.Tests
         {
             //Arrange
             var genre = new Genre();
-            genre.Id = 1;
-            genre.Name = "Komedia";
-
+            {
+                genre.Id = 1;
+                genre.Name = "Komedia";
+            }
+            
             var book = new Book();
-            book.Id = 10;
-            book.Title = "Tytul";
-            book.Author = "Kamil";
-            book.Genre = genre;
-
+            {
+                book.Id = 10;
+                book.Name = "Tytul";
+                book.Author = "Kamil";
+                book.Genre = genre;
+            }
+            
             var bookService = new BookService();
             bookService.AddBook(book);
             //Act           
@@ -66,14 +74,19 @@ namespace Library_Management_System.Tests
         {
             //Arrange
             var genre = new Genre();
-            genre.Id = 1;
-            genre.Name = "Komedia";
+            {
+                genre.Id = 1;
+                genre.Name = "Komedia";
+            }
+
 
             var book = new Book();
-            book.Id = 1;
-            book.Title = "Tytul";
-            book.Author = "Kamil";
-            book.Genre = genre;
+            {
+                book.Id = 1;
+                book.Name = "Tytul";
+                book.Author = "Kamil";
+                book.Genre = genre;
+            }
 
             var bookService = new BookService();
             bookService.AddBook(book);

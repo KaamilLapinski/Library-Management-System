@@ -27,8 +27,16 @@ namespace Library_Management_System.App.Concrete
         public void RemoveGenre(int genreId)
         {
             var genre = GetElementById(genreId);
-            RemoveElement(genre);
+            if (genre != null)
+            {
+                RemoveElement(genre);
+            }
+            else 
+            {
+                Console.WriteLine("Kategoria o podanym id nie istnieje!");
+            }        
         }
+
         public void ShowGenre()
         {
             if (Elements.Count == 0)

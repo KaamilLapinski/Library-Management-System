@@ -45,6 +45,7 @@ namespace Library_Management_System.App.Common
             }
             return lastId;
         }
+
         public T GetElementById(int id)
         {
             var el = Elements.First(p => p.Id == id);

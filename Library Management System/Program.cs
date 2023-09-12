@@ -1,6 +1,7 @@
 ﻿using Library_Management_System;
 using Library_Management_System.App;
 using Library_Management_System.App.Concrete;
+using Library_Management_System.App.Managers;
 using Library_Management_System.Helpers;
 
 namespace Library_Management_System
@@ -12,7 +13,9 @@ namespace Library_Management_System
             Console.WriteLine("-------------Library Management System-------------");
             ReaderService readerService = new ReaderService();
             BookService bookService = new BookService();
+            BookManager bookManager = new BookManager();
             GenreService genreService = new GenreService();
+            
             
             while (true)
             {               
@@ -51,7 +54,7 @@ namespace Library_Management_System
                                 readerService.RemoveReader(idReader);
                                 break;
                             case "3":
-                                var book = bookService.addBookView();
+                                var book = bookManager.addBookView();
                                 bookService.AddBook(book);
                                 break;
                             case "4":

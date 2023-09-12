@@ -31,19 +31,21 @@ namespace Library_Management_System.App
             AddElement(reader);
             Console.WriteLine("Dodano nowego czytelnika.");
         }
+
         public void RemoveReader(int idReader)
         {
             var reader = GetElementById(idReader);
-            if(reader.BorrowBooks.Count == 0)
+            if(reader.BorrowBooks.Count == 0 && reader != null)
             {
                 RemoveElement(reader);
                 Console.WriteLine("Usunieto czytelnika.");
             }
             else
             {
-                Console.WriteLine("Nie można usunąć czytelnika, który ma wypożyczone książki.");               
+                Console.WriteLine("Nie można usunąć czytelnika!");               
             }                       
         }
+
         public void ShowReaders()
         {           
             foreach (Reader reader in Elements)
@@ -54,7 +56,7 @@ namespace Library_Management_System.App
                     Console.WriteLine("Wypożyczone książki:");
                     foreach (var item in reader.BorrowBooks)
                     {        
-                        Console.WriteLine($"ID: {item.Id} Tytul: {item.Title} Autor: {item.Author} Gatunek: {item.Genre}");
+                        Console.WriteLine($"ID: {item.Id} Tytul: {item.Name} Autor: {item.Author} Gatunek: {item.Genre}");
                     }
                 }
                 else
@@ -75,7 +77,7 @@ namespace Library_Management_System.App
                     Console.WriteLine("Wypożyczone książki:");
                     foreach (var item in reader.BorrowBooks)
                     {
-                        Console.WriteLine($"ID: {item.Id} Tytuł: {item.Title} Autor: {item.Author} Gatunek: {item.Genre}");
+                        Console.WriteLine($"ID: {item.Id} Tytuł: {item.Name} Autor: {item.Author} Gatunek: {item.Genre}");
                         Console.WriteLine($"--Książke musisz zwrócić do {item.ReturnDate}");
                     }
                 }

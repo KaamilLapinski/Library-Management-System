@@ -9,5 +9,7 @@ namespace Library_Management_System.Domain.Common
     public class BaseEntity : AuditableModel
     {
         public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

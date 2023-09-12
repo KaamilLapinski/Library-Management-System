@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library_Management_System.App.Abstract
 {
-    internal interface IService<T>
+    public interface IService<T>
     {
         static List<T> Elements { get; set; }
 
