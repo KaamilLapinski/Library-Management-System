@@ -15,8 +15,10 @@ namespace Library_Management_System
             BookService bookService = new BookService();
             BookManager bookManager = new BookManager();
             GenreService genreService = new GenreService();
-            
-            
+
+            readerService.loadDataFromFile("readers");
+            bookService.loadDataFromFile("books");
+            genreService.loadDataFromFile("genre");
             while (true)
             {               
                 Console.WriteLine("[1.] Administrator ");
@@ -114,7 +116,7 @@ namespace Library_Management_System
                                 bookService.ShowBooks();
                                 break;
 
-                            case "0":
+                            case "0":                               
                                 Environment.Exit(0);
                                 break;
                             default:
@@ -147,6 +149,10 @@ namespace Library_Management_System
                         }
                         break;
                     case '0':
+                        readerService.saveDataToFile("readers");
+                        bookService.saveDataToFile("books");
+                        genreService.saveDataToFile("genre");
+                        Console.WriteLine("Do zobaczenia");
                         Environment.Exit(0);
                         break;
                     default:

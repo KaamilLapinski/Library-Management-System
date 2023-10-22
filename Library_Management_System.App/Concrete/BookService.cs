@@ -2,6 +2,7 @@
 using Library_Management_System.App.Concrete;
 using Library_Management_System.Domain;
 using Library_Management_System.Domain.Entity;
+using Newtonsoft.Json;
 //using Library_Management_System.Helpers;
 using System;
 using System.Collections.Generic;
@@ -90,7 +91,14 @@ namespace Library_Management_System.App
                   }                     
                 }
             return books;
-        } 
-         
+        }
+      /*
+        public void loadReadersFromFile()
+        {
+            string json = File.ReadAllText(@"C:\Users\klapi\Documents\Dane_Library\readers.json");
+            var readers = JsonConvert.DeserializeObject<List<Reader>>(json);
+            Elements = readers;
+        }
+      */
     }
 }
