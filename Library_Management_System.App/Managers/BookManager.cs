@@ -25,8 +25,7 @@ namespace Library_Management_System.App.Managers
 
                 Console.WriteLine("Podaj autora:");
                 var author = Console.ReadLine();
-
-                
+              
                 bool existGenre;
                 if (GenreService.Elements.Count > 0)
                 {

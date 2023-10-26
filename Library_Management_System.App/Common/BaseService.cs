@@ -66,9 +66,9 @@ namespace Library_Management_System.App.Common
         {
             if (File.Exists(@$"C:\temp\{path}.json"))
             {
-                string json = File.ReadAllText(@$"C:\Users\klapi\Documents\Dane_Library\{path}.json");
+                string json = File.ReadAllText(@$"C:\temp\{path}.json");
                 var elements = JsonConvert.DeserializeObject<List<T>>(json);
-                Elements = elements;
+                Elements = elements;               
             }          
         }
     }

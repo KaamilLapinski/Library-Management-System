@@ -83,7 +83,7 @@ namespace Library_Management_System.App
                     {
                         Console.WriteLine($"ID: {item.Id} Tytuł: {item.Name} Autor: {item.Author} Gatunek: {item.Genre.Name}");
                         Console.WriteLine($"--Książke musisz zwrócić do {item.ReturnDate}");
-                    }
+                    }                   
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Library_Management_System.App
             {
                 if(reader.Id == idReader)
                 {
-                    foreach(Book book in BookService.Elements)
+                    foreach(Book book in reader.BorrowBooks)
                     {
                         if(book.Id == idBook && book.IsAvailable == false)
                         {                           
