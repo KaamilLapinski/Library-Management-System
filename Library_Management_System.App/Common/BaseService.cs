@@ -55,18 +55,19 @@ namespace Library_Management_System.App.Common
         }
         public void saveDataToFile(string path)
         {
-            using StreamWriter sw = new StreamWriter(@$"C:\temp\{path}.json");
+            string result = Path.GetTempPath();
+            using StreamWriter sw = new StreamWriter(@$"{result}{path}.json");
             using JsonWriter writer = new JsonTextWriter(sw);
 
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(writer, Elements);
-
         }
         public void loadDataFromFile(string path)
         {
-            if (File.Exists(@$"C:\temp\{path}.json"))
+            string result = Path.GetTempPath();
+            if (File.Exists(@$"{result}{path}.json"))
             {
-                string json = File.ReadAllText(@$"C:\temp\{path}.json");
+                string json = File.ReadAllText(@$"{result}{path}.json");
                 var elements = JsonConvert.DeserializeObject<List<T>>(json);
                 Elements = elements;               
             }          

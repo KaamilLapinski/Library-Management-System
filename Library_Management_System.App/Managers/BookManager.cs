@@ -62,15 +62,30 @@ namespace Library_Management_System.App.Managers
                     book.Id = lastId + 1;
                     book.Name = title;
                     book.Author = author;
-                }
-            
-                
-                
-                
-
+                }          
                 return book;
             }
+
+        public int getIdBook()
+        {
+            _bookService.ShowBooks();
+            Console.WriteLine("Podaj ID ksiazki");
+            var idB = Console.ReadLine();
+            int idBook;
+            Int32.TryParse(idB, out idBook);
+            return idBook;
             
         }
+
+        public int removeBookView()
+        {               
+            _bookService.ShowBooks();
+            Console.WriteLine("Podaj ID ksiazki do usunięcia");
+            var idB = Console.ReadLine();
+            int idBook;
+            Int32.TryParse(idB, out idBook);
+            return idBook;
+        }
+    }
     }
 

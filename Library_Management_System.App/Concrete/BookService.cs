@@ -29,17 +29,14 @@ namespace Library_Management_System.App
             if (book != null)
             {
                 RemoveElement(book);
-
                 Console.WriteLine("Usunieto książke z bazy");
                 return book.Id;
-
             }
             else
             {
                 Console.WriteLine("Ksiazka o podanym id nie istnieje!");
                 return 0;
-            }
-            
+            }           
         }
 
         public int ShowBooks()
@@ -91,14 +88,6 @@ namespace Library_Management_System.App
                   }                     
                 }
             return books;
-        }
-      /*
-        public void loadReadersFromFile()
-        {
-            string json = File.ReadAllText(@"C:\Users\klapi\Documents\Dane_Library\readers.json");
-            var readers = JsonConvert.DeserializeObject<List<Reader>>(json);
-            Elements = readers;
-        }
-      */
+        }    
     }
 }

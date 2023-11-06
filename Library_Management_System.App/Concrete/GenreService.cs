@@ -11,16 +11,8 @@ namespace Library_Management_System.App.Concrete
 {
     public class GenreService : BaseService<Genre>
     {
-        public void AddGenre()
+        public void AddGenre(Genre genre)
         {
-            Genre genre = new Genre();
-            Console.WriteLine("Podaj nazwe kategori");
-            var name = Console.ReadLine();
-
-            var lastId = GetLastId();
-            genre.Id = lastId + 1;
-            genre.Name = name;
-
             AddElement(genre);
             Console.WriteLine("Dodano nową kategorie.");
         }
@@ -41,7 +33,7 @@ namespace Library_Management_System.App.Concrete
         {
             if (Elements.Count == 0)
             {
-                Console.WriteLine("Brak Kategori w bazie");
+                Console.WriteLine("Brak kategori w bazie");
             }
             else
             {

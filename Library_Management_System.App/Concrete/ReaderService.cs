@@ -16,24 +16,10 @@ namespace Library_Management_System.App
 {
     public class ReaderService : BaseService<Reader>
     {
-        public void AddReader()
-        {
-            Reader reader = new Reader();
-            
-            Console.WriteLine("Podaj imie:");
-            var name = Console.ReadLine();
-
-            Console.WriteLine("Podaj numer telefonu:");
-            var phoneNUmber = Console.ReadLine();
-
-            var lastId = GetLastId();
-            reader.Id = lastId + 1;
-            reader.Name = name;
-            reader.PhoneNumber = phoneNUmber;
-
+        public void AddReader(Reader reader)
+        {          
             AddElement(reader);
             Console.WriteLine("Dodano nowego czytelnika.");
-
         }
 
         public void RemoveReader(int idReader)

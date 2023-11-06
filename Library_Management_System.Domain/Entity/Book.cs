@@ -11,8 +11,6 @@ namespace Library_Management_System.Domain.Entity
     {
         public double Price { get; set; }
 
-        public string Name { get; set; }
-
         public string Author { get; set; }  
         
         public Genre Genre { get; set; }

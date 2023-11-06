@@ -10,15 +10,17 @@ namespace Library_Management_System
         {
             Console.WriteLine("-------------Library Management System-------------");
             ReaderService readerService = new ReaderService();
+            ReaderManager readerManager = new ReaderManager();  
             BookService bookService = new BookService();
             BookManager bookManager = new BookManager();
             GenreService genreService = new GenreService();
+            GenreManager genreManager = new GenreManager();
 
             readerService.loadDataFromFile("readers");
             bookService.loadDataFromFile("books");
             genreService.loadDataFromFile("genre");
             while (true)
-            {               
+            {
                 Console.WriteLine("[1.] Administrator ");
                 Console.WriteLine("[2.] Czytelnik");
                 Console.WriteLine("[0.] Wyjście");
@@ -42,31 +44,20 @@ namespace Library_Management_System
                         Console.Clear();
                         switch (operation2)
                         {
-                            case "1":
-                                readerService.AddReader();
+                            case "1":                               
+                                readerService.AddReader(readerManager.addReaderView());
                                 break;
                             case "2":
-                                readerService.ShowReaders();
-                                Console.WriteLine("Podaj ID czytelnika do usunięcia");
-                                var idR = Console.ReadLine();
-                                int idReader;
-                                Int32.TryParse(idR, out idReader);
-                                readerService.RemoveReader(idReader);
+                                readerService.RemoveReader(readerManager.getIdReader(false));
                                 break;
                             case "3":
-                                var book = bookManager.addBookView();
-                                bookService.AddBook(book);
+                                bookService.AddBook(bookManager.addBookView());
                                 break;
                             case "4":
-                                bookService.ShowBooks();
-                                Console.WriteLine("Podaj ID ksiazki do usunięcia");
-                                var idB = Console.ReadLine();
-                                int idBook;
-                                Int32.TryParse(idB, out idBook);
-                                bookService.RemoveBook(idBook);
+                                bookService.RemoveBook(bookManager.getIdBook());
                                 break;
-                            case "5":
-                                genreService.AddGenre();
+                            case "5":                               
+                                genreService.AddGenre(genreManager.addGenreView());
                                 break;
                             case "6":
                                 bookService.ShowBooksByAvailability(false);
@@ -74,41 +65,11 @@ namespace Library_Management_System
                             case "7":
                                 readerService.ShowReaders();
                                 break;
-                            case "8":
-                                readerService.ShowReaders();
-                                Console.WriteLine("Podaj ID czytelnika:");                              
-                                int idReader2;                               
-                                while (!Int32.TryParse(Console.ReadLine(), out idReader2))
-                                {
-                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
-                                };
-
-                                bookService.ShowBooks();
-                                Console.WriteLine("Podaj ID książki");
-                                int idBook2;
-                                while (!Int32.TryParse(Console.ReadLine(), out idBook2))
-                                {
-                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
-                                };
-
-                                readerService.BorrowBook(idReader2, idBook2);
+                            case "8":                              
+                                readerService.BorrowBook(readerManager.getIdReader(false), bookManager.getIdBook());
                                 break;
                             case "9":
-                                readerService.ShowReaders();
-                                Console.WriteLine("Podaj ID czytelnika:");
-                                int idReader3;
-                                while (!Int32.TryParse(Console.ReadLine(), out idReader3))
-                                {
-                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
-                                };
-                                
-                                Console.WriteLine("Podaj ID książki");
-                                int idBook3;    
-                                while (!Int32.TryParse(Console.ReadLine(), out idBook3))
-                                {
-                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
-                                };
-                                readerService.ReturnBook(idReader3, idBook3);
+                                readerService.ReturnBook(readerManager.getIdReader(false), bookManager.getIdBook());
                                 break;
                             case "10":
                                 bookService.ShowBooks();
@@ -132,13 +93,7 @@ namespace Library_Management_System
                         switch (operation3.KeyChar)
                         {
                             case '1':
-                                Console.WriteLine("Podaj swoje ID:");                               
-                                int idReader4; 
-                                while (!Int32.TryParse(Console.ReadLine(), out idReader4))
-                                {
-                                    Console.WriteLine("Nie prawidłowe dane! Podaj liczbe:");
-                                };
-                                readerService.ShowReaders(idReader4);
+                                readerService.ShowReaders(readerManager.getIdReader(true));
                                 break;
                             case '2':
                                 Console.WriteLine("Dostępne książki:");

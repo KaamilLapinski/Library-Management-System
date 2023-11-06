@@ -9,6 +9,6 @@ namespace Library_Management_System.Domain.Entity
 {
     public class Genre : BaseEntity
     {
-        //public string Name;
+        
     }
 }
